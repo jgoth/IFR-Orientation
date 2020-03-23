@@ -1,10 +1,15 @@
-	float kias_target = 120.0f;
-	float kts_to_msc = 0.5144f;
-	float new_vx = (float)sin((float)heading * DEG_TO_RAD) * kias_target * (float)kts_to_msc;
-	float new_vz = (float)-cos((float)heading * DEG_TO_RAD) * kias_target * (float)kts_to_msc;
+XPLMDataRef gVelocityX = "sim/flightmodel/position/local_vx";
+XPLMDataRef gVelocityY = "sim/flightmodel/position/local_vy";
+XPLMDataRef gVelocityZ = "sim/flightmodel/position/local_vz";
 
-	ss << "new_vx: " << new_vx << ", new_vz: " << new_vz << std::endl;
-	debug_string(ss);
+float vx = XPLMGetDataf(gVelocityX);
+float vy = XPLMGetDataf(gVelocityY);
+float vz = XPLMGetDataf(gVelocityZ);
 
-	XPLMSetDataf(gVelocityX, new_vx);
-	XPLMSetDataf(gVelocityZ, new_vz);
+float kias_target = 120.0f;
+float kts_to_msc = 0.5144f;
+float new_vx = (float)sin((float)heading * DEG_TO_RAD) * kias_target * (float)kts_to_msc;
+float new_vz = (float)-cos((float)heading * DEG_TO_RAD) * kias_target * (float)kts_to_msc;
+
+XPLMSetDataf(gVelocityX, new_vx);
+XPLMSetDataf(gVelocityZ, new_vz);
