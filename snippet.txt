@@ -1,0 +1,10 @@
+	float kias_target = 120.0f;
+	float kts_to_msc = 0.5144f;
+	float new_vx = (float)sin((float)heading * DEG_TO_RAD) * kias_target * (float)kts_to_msc;
+	float new_vz = (float)-cos((float)heading * DEG_TO_RAD) * kias_target * (float)kts_to_msc;
+
+	ss << "new_vx: " << new_vx << ", new_vz: " << new_vz << std::endl;
+	debug_string(ss);
+
+	XPLMSetDataf(gVelocityX, new_vx);
+	XPLMSetDataf(gVelocityZ, new_vz);
